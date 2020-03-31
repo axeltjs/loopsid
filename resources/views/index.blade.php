@@ -16,7 +16,7 @@
                       
                       <div class="post-meta">
                         <span class="d-block"><a href="#">{{ $item->user->name }}</a> </span>
-                        <span class="date-read">{{ $item->updated_at->diffForHumans() }}</span>
+                        <span class="date-read">{{ $item->updated_at->diffForHumans() }} <span class="icon-star2"></span></span>
                       </div>
       
                     </div>

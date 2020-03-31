@@ -210,7 +210,7 @@
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
                 <article class="content items-list-page">
-                    @include('layouts._flash')
+                    @include('admin.layouts._flash')
                     @yield('content')
                 </article>
                 <footer class="footer">

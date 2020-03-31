@@ -17,6 +17,9 @@ Route::get('/', 'HomeController@index');
 Route::get('/blog', 'HomeController@blog')->name('blog');
 Route::get('/blog/{slug}', 'HomeController@single')->name('single-post');
 
+Route::post('comment/post', 'HomeController@postComment')->name('post-comment');
+Route::delete('comment/delete/{id}', 'HomeController@deleteComment')->name('delete-comment');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');

@@ -33,9 +33,6 @@
             </div>
             <div class="site-mobile-menu-body"></div>
           </div>
-      
-      
-          
           <div class="header-top">
             <div class="container">
               <div class="row align-items-center">
@@ -84,10 +81,23 @@
                         <li class="{{ Request::segment(2) == 'blog' ? 'active' : '' }}">
                             <a href="{{ route('blog') }}" class="nav-link text-left">Blog</a>
                         </li>
+                        @guest
                         <li>
-                            <a href="{{ route('login') }}" class="nav-link text-left">Login</a></li>
-                        </ul>                                                                                                                                                                                                                                                                                         
-                  </nav>
+                            <a href="{{ route('login') }}" class="nav-link text-left">Login</a>
+                        </li>
+                        @endguest
+                        @auth
+                        <li>
+                            <a href="{{ route('home') }}" class="nav-link text-left">Admin Page</a>
+                        </li>
+                        <li class="pull-right">
+                            <a href="{{ route('logout') }}"
+                              onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();" class="nav-link text-left">Logout</a>
+                        </li>
+                        @endauth                                                                                                                                                                                                                                                                                        
+                      </ul> 
+                    </nav>
       
                 </div>
                
@@ -97,8 +107,8 @@
           </div>
           
           </div>
+          @yield('container')
 
-@yield('container')
   
   <div class="footer">
     <div class="container">
