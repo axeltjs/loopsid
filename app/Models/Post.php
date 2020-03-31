@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Str;
+use Auth;
 
 class Post extends Model
 {
@@ -24,6 +26,16 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');        
     }
 
+    public function getContentShortAttribute()
+    {
+        return Str::limit(strip_tags($this->getAttribute('content')), 100, $end='...');
+    }
+
+    public function getTanggalAttribute()
+    {
+        return date('d F Y', strtotime($this->getAttribute('created_at')));
+    }
+
     /**
      * Filtering data
      * 
@@ -32,6 +44,11 @@ class Post extends Model
     public function scopeFilter($query, $request)
     {
         return $query->where('title','LIKE','%'.$request->get('q').'%');
+    }
+
+    public function scopeMyPost($query)
+    {
+        return $query->where('user_id', Auth::user()->id);
     }
 
 }

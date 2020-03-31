@@ -36,6 +36,7 @@
             }
         }
         </style>
+        @yield('css')
     </head>
     <body>
         <div class="main-wrapper">

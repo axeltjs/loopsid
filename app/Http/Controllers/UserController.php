@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::exceptMe()->filter($request)->paginate(20);
+        $data = User::exceptMe()->filter($request)->paginate(10);
         $view = [
             'items' => $data,
         ];
@@ -131,10 +131,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         $data = User::findOrFail($id);
-        User::find($data->id)->update([
-            'username' => $data->username.";",
-            'email' => $data->email.";",
-        ]);
         $data = $data->delete();
 
         $this->message('The user has been successfully deleted!');
