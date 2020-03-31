@@ -106,6 +106,10 @@ class PostController extends Controller
             'content' => $request->get('content'),
         ];
 
+        if($request->get('is_delete_photo')){
+            $data['image'] = null;
+        }
+
         if (isset($nama_file)) {
             $data['image'] = $nama_file;
         }

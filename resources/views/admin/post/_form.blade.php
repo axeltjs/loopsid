@@ -19,6 +19,11 @@
 	<div class="col-md-10">
 		{!! Form::file('image', null, ['class' => 'form-control']) !!}
 		{!! $errors->first('image', '<p class="help-block">:message</p>') !!}
+		@if($method == 'edit')
+		<br>
+			<input type="checkbox" name="is_delete_photo" id="checkbox_id" value="1">
+			<label for="checkbox_id">Hapus Gambar yang telah ada</label>
+		@endif
 	</div>
 </div>
 
