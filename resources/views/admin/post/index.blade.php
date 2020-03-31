@@ -64,6 +64,7 @@
                                     <th>Judul</th>
                                     <th>Konten</th>
                                     <th>Tanggal Penulisan</th>
+                                    <th>Penulis/Editor</th>
                                     <th>Thumbnail</th>
                                     <th>Option</th>
                                 </tr>
@@ -75,6 +76,7 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->content_short }}</td>
                                     <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->user->name }}</td>
                                     <td>
                                         @if(empty($item->image))
                                         -
@@ -90,6 +92,7 @@
                                         </div>
                                         @endif
                                     </td>
+                                    
                                     <td>
                                         <a data-confirm="Are you sure?" data-token="{{ csrf_token() }}" data-method="DELETE" href="{{ url('post/'.$item->id) }}" class="btn btn-block btn-danger"> Delete</a>
                                         <a href="{{ url('post/'.$item->id.'/edit') }}" class="btn btn-block btn-warning">Edit</a>

@@ -56,7 +56,12 @@ class Post extends Model
      */
     public function scopeFilter($query, $request)
     {
-        return $query->where('title','LIKE','%'.$request->get('q').'%');
+        if($request->get('q') != null){
+            return $query->where('title','LIKE','%'.$request->get('q').'%')
+            ->orWhereHas('user', function($query) use ($request){
+                return $query->where('name', 'LIKE', '%'.$request->get('q').'%');
+            });
+        }
     }
 
     public function scopeMyPost($query)

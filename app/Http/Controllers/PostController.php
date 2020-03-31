@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Post::myPost()->filter($request)->paginate(10);
+        $data = Post::filter($request)->paginate(10);
         $view = [
             'items' => $data,
         ];
@@ -83,7 +83,7 @@ class PostController extends Controller
     {
         $view = [
             'method' => 'edit',
-            'item' => Post::myPost()->findOrFail($id)
+            'item' => Post::findOrFail($id)
         ];
 
         return view('admin.post.create_edit')->with($view);
@@ -103,6 +103,7 @@ class PostController extends Controller
 
         $data = [
             'title' => $request->get('title'),
+            'user_id' => Auth::user()->id,
             'content' => $request->get('content'),
         ];
 
