@@ -7,16 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'post_id',
-        'name',
-        'email',
-        'website',
-        'comment',
+        'user_id',
+        'title',
+        'slug',
+        'content',
+        'image'
     ];
 
-    public function post()
+    public function comment()
     {
-        return $this->belongsTo(Post::class, 'post_id');        
+        return $this->hasMany(Comment::class, 'post_id');        
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');        
+    }
+
+    /**
+     * Filtering data
+     * 
+     * @return query
+     */
+    public function scopeFilter($query, $request)
+    {
+        return $query->where('title','LIKE','%'.$request->get('q').'%');
     }
 
 }

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Auth;
-use Hash;
 class UserController extends Controller
 {
     use TraitProfile;
