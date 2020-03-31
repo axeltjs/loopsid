@@ -3,8 +3,8 @@
 namespace App\Observers;
 
 use App\Models\User;
-use App\Model\Post;
-use App\Model\Comment;
+use App\Models\Post;
+use App\Models\Comment;
 
 class UserObServer
 {
@@ -16,7 +16,12 @@ class UserObServer
      */
     public function updating(User $user)
     {
-        User::where('id', $user->id)->update(['name' => $user->email]);
+        if($user->name != $user->getOriginal('name')){
+            return Comment::where('email', $user->getOriginal('email'))->update([
+                'email' => $user->email,
+                'name' => $user->name
+            ]);
+        }
     }
     
    /**
