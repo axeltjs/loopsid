@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Post;
 class HomeController extends Controller
 {
 
@@ -14,7 +14,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $slider = Post::take(3)->orderBy('id','desc')->get();
+        $data = [
+            'slider' => $slider
+        ];
+
+        return view('index')->with($data);
     }
 
 
@@ -25,6 +30,16 @@ class HomeController extends Controller
      */
     public function blog()
     {
-        return view('index');
+        return view('blog');
+    }
+
+    public function single($slug)
+    {
+        $item = Post::where('slug', $slug)->first();
+        $data = [
+            'item' => $item
+        ];
+
+        return view('single-post')->with($data);
     }
 }

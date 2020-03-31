@@ -30,6 +30,19 @@ class Post extends Model
     {
         return Str::limit(strip_tags($this->getAttribute('content')), 100, $end='...');
     }
+    public function getContentMedAttribute()
+    {
+        return Str::limit(strip_tags($this->getAttribute('content')), 550, $end='...');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        $gambar = $this->getAttribute('image');
+        if($gambar == null){
+            return "img/no-image.jpg";
+        }
+        return "storage/post/".$gambar;
+    }
 
     public function getTanggalAttribute()
     {

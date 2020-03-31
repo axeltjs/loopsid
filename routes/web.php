@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Route::get('/blog', 'HomeController@blog')->name('blog');
+Route::get('/blog/{slug}', 'HomeController@single')->name('single-post');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -23,7 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'DashboardController@index')->name('home');
     Route::resource('user', 'UserController');
     Route::resource('post', 'PostController');
-
     Route::get('profile','UserController@profileView');    
     Route::post('profile','UserController@profilePost');    
 });
