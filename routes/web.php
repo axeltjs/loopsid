@@ -15,7 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Route::get('/blog', 'HomeController@blog')->name('blog');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'DashboardController@index')->name('home');
+    Route::resource('user', 'UserController');
 
-Route::get('/home', 'DashboardController@index')->name('home');
+    Route::get('profile','UserController@profileView');    
+    Route::post('profile','UserController@profilePost');    
+});
+

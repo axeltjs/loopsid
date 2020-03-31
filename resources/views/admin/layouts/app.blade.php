@@ -7,16 +7,16 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Warehousema') }}</title>
+        <title>{{ config('app.name', 'Loops.id') }}</title>
 
-        <meta name="description" content="Warehouse app for emma azrina ulfa">
+        <meta name="description" content="Application for test purpose">
         <meta name="author" content="axel tjs">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}">
+        <link rel="apple-touch-icon" href="{{ asset('auth/favicon.ico') }}">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/app-custom.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/app-green.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/vendor.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/app-custom.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/app-green.css') }}">
         <script>
             <!-- Theme initialization -->
             var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
@@ -91,17 +91,17 @@
                                     <span class="l l3"></span>
                                     <span class="l l4"></span>
                                     <span class="l l5"></span>
-                                </div> Warehousema </div>
+                                </div> Loops.id </div>
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                 <li>
-                                    <a href="{{ url('/home') }}">
-                                        <i class="fa fa-home"></i> Dashboard </a>
+                                    <a href="{{ url('/') }}">
+                                        <i class="fa fa-home"></i> Home </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/document') }}">
-                                        <i class="fa fa-folder"></i> Dokumen</a>
+                                    <a href="{{ url('/post') }}">
+                                        <i class="fa fa-folder"></i> Post</a>
                                 </li>
                                 <li>
                                     <a href="{{ url('/user') }}">
@@ -214,7 +214,7 @@
                 </article>
                 <footer class="footer">
                     <div class="footer-block buttons">
-                        <small>2018 &copy; Emma Azrina Ulfa</small>
+                        <small>2020 &copy; Axel Titandrias Jodi Saputra</small>
                     </div>
                     <div class="footer-block author" style="font-size:10px">
                         <ul>
@@ -308,9 +308,9 @@
                 <div class="color-secondary"></div>
             </div>
         </div>
-        <script src="{{ asset('js/vendor.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/laravel.js') }}"></script>
+        <script src="{{ asset('auth/js/vendor.js') }}"></script>
+        <script src="{{ asset('auth/js/app.js') }}"></script>
+        <script src="{{ asset('auth/js/laravel.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
         @if (session()->has('flash_notification.message'))

@@ -70,9 +70,6 @@
               </div>
             </div>
             
-      
-      
-            
             <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
       
             <div class="container">
