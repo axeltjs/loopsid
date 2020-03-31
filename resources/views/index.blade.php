@@ -7,7 +7,7 @@
               <div class="site-section">
                 <div class="container">
                   <div class="half-post-entry d-block d-lg-flex bg-light">
-                    <div class="img-bg" style="background-image: url('{{ asset($item->image_url) }}')"></div>
+                    <div class="img-bg" style="background-image: url('{{ asset($item->image_url) }}'); cursor:pointer;" onclick="window.location.href='{{ url('blog/'.$item->slug) }}'""></div>
                     <div class="contents">
                       <h2><a href="{{ url('blog/'.$item->slug) }}">{{ $item->title }}</a></h2>
                       <p class="mb-3">

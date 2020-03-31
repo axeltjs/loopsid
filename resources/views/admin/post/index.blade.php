@@ -19,6 +19,9 @@
         background: transparent;
         border: none;
     }
+    .dark{
+        background: #dfeded;
+    }
     </style>
 @endsection
 @section('content')
@@ -90,6 +93,7 @@
                                     <td>
                                         <a data-confirm="Are you sure?" data-token="{{ csrf_token() }}" data-method="DELETE" href="{{ url('post/'.$item->id) }}" class="btn btn-block btn-danger"> Delete</a>
                                         <a href="{{ url('post/'.$item->id.'/edit') }}" class="btn btn-block btn-warning">Edit</a>
+                                        <a class="btn btn-info btn-block" data-toggle="modal" data-target="#{{ $item->slug }}">Lihat Komentator</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -104,5 +108,50 @@
         </div>
     </div>
 </section>
+
+@foreach($items as $comments)
+<div id="{{ $comments->slug }}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h4 class="modal-title pull-left">Komentar</h4>
+            @if($comments->comment->count() > 0)
+            <table class="table table-bordered table-responsive" width="100%">
+                @foreach($comments->comment as $comment)
+                    <tr class="{{ ($loop->iteration % 2 == 0) ? 'dark' : 'white' }}">
+                        <td width="20%">Name</td>
+                        <td width="80%">{{ $comment->name }}</td>
+                    </tr>
+                    <tr class="{{ ($loop->iteration % 2 == 0) ? 'dark' : 'white' }}">
+                        <td>Email</td>
+                        <td>{{ $comment->email }}</td>
+                    </tr>
+                    <tr class="{{ ($loop->iteration % 2 == 0) ? 'dark' : 'white' }}">
+                        <td>Website</td>
+                        <td>{{ $comment->website }}</td>
+                    </tr>
+                    <tr class="{{ ($loop->iteration % 2 == 0) ? 'dark' : 'white' }}">
+                        <td>Comment</td>
+                        <td>{{ $comment->comment }}</td>
+                    </tr>
+                @endforeach
+            </table>
+            @else 
+            <br><br>
+            <span class="alert alert-info">Belum ada komentar.</span>
+            @endif
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+@endforeach
 
 @endsection

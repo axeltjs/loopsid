@@ -32,9 +32,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function blog()
+    public function blog(Request $request)
     {
-        return view('blog');
+        $blog = Post::filter($request)->orderBy('updated_at','desc')->paginate(15);
+        $data = [
+            'posts' => $blog
+        ];
+        return view('blog')->with($data);
     }
 
     public function single($slug)
